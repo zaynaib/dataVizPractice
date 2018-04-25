@@ -5,11 +5,15 @@
    </head>
 
    <body>
+       <div id="first">
        <p>Hello World!</p>
+       </div>
       <script>
          // write your d3 code here.. 
          console.log(d3.select('p').text())
         // alert(d3.select("p").text());
+        d3.select('#first').append("p").text("I appended this paragraph")
+        console.log(d3.select('#first'));
       </script>
    </body>
 </html>
