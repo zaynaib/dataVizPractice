@@ -1,0 +1,10 @@
+d3.select("body").append("svg")
+
+d3.select("svg")
+    .append("line")
+    .attr("x1",20)
+    .attr("y1",20)
+    .attr("x2",400)
+    .attr("y2",400)
+    .style("stroke","black")
+    .style("stroke-width","2px")
