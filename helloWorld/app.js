@@ -38,3 +38,8 @@ d3.select("svg")
     .text("WORLD")
     .style("opacity",0.3)
     .text("Uh,...hi")
+
+    d3.select("#a").transition().delay(1000).style("opacity",1)
+    d3.select("#b").transiton().delay(3000).style("opacity",.75);
+
+    d3.selectAll("circle").transition().duration(20000).attr("cy",200)
