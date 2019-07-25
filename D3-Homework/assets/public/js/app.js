@@ -1,83 +1,97 @@
-// @TODO: YOUR CODE HERE!
-
-console.log("hello!");
+//Data Utility
+const parseNA = string => (string == 'NA' ? undefined : string);
 
 //Create function to convert data types in json
+function dataTypes(d){
+  return{
 
-//SET UP for svg wrapper
-let svgWidth = 960;
-let svgHeight = 600;
+  abbr: parseNA(d.abbr),
+  age: +d.age,
+  ageMoe: +d.ageMoe,
+  healthcare: +d.healthcare,
+  healthcareHigh: +d.healthcareHigh,
+  healthcareLow: +d.healthcareLow,
+  id: +d.id,
+  income: +d.income,
+  incomeMoe: +d.incomeMoe,
+  obesity: +d.obesity,
+  obesityHigh: +d.obesityHigh,
+  obesityLow: +d.obesityLow,
+  poverty: +d.poverty,
+  povertyMoe: +d.povertyMoe,
+  smokes: +d.smokes,
+  smokesHigh: +d.smokesHigh,
+  smokesLow: +d.smokesLow,
+  state: parseNA(d.state)
+  };
+}
 
-const margin = {top:50, right:50,bottom:50,left:50};
 
-let chartWidth = svgWidth - margin.right - margin.left;
-let chartHeight = svgHeight - margin.top - margin.bottom;
+function ready(govData){
+  // Data Prep
+  const cleanData = dataTypes(govData)
 
-//create a svg wrapper to hold the chart and shift graph for margins
-
-let svg = d3.select(".chart")
-            .append("svg")
-            .attr("width",svgWidth)
-            .attr("height",svgHeight)
-            .append("g")
-            .attr("transform",`translate(${margin.left},${margin.top})`)
-
-let chart = svg.append("g");
-
-//upload data from csv file
-d3.csv("data/data.csv",  healthData=> {
-  //if (err) throw err;
-  healthData.forEach((data) =>{
-    data.poverty = Number(data.poverty);
-    data.healthcare = +data.healthcare;
-  })
-
-  //scale functions for axis
-  let yLinearScale = d3.scaleLinear()
-                        .range([chartHeight,0]) //how big your outputs are
-                        .domain([0, d3.max(healthData,data => +data.healthcare) * 1.2])
+  //Chart margin pattern
+  const svgWidth = 960;
+  const svgHeight = 600;
   
-  let xLinearScale = d3.scaleLinear()
-                      .range([0,chartWidth])
-                      .domain([d3.min(healthData, data => +data.poverty) - 1, d3.max(healthData, data => +data.poverty) + 1]);
-
-
-  let bottomAxis = d3.axisBottom()
-                      .scale(xLinearScale);
+  const margin = {top:50, right:50,bottom:50,left:50};
   
-  let leftAxis = d3.axisLeft()
-                    .scale(yLinearScale);
-  
+  let chartWidth = svgWidth - margin.right - margin.left;
+  let chartHeight = svgHeight - margin.top - margin.bottom;
+
+  //chart scales
+  let xScale = d3.scaleLinear()
+            .domain([d3.min(govData, data => +data.poverty) - 1, d3.max(govData, data => +data.poverty) + 1])
+            .range([0,chartWidth]);
+
+  let yScale = d3.scaleLinear()
+           .domain([0 , d3.max(govData, data => +data.healthcare) *1.2 ])
+            .range([chartHeight,0]);
 
 
 
-//append the dots to the graph
-chart.selectAll("circle")
-      .data(healthData)
-      .enter().append("circle")
-      .attr("cx",(data,index)=>xLinearScale(data.poverty))
-      .attr("cy",(data,index)=>yLinearScale(data.healthcare))
-      .attr("r",15)
-      .attr("fill","pink")
+//Draw base
+const svg = d3.select('.chart')
+    .append('svg')
+    .attr('height',chartHeight)
+    .attr('width',chartWidth)
+    .append('g')
+    .attr('transform',`translate(${margin.left},${margin.top})`);
+
+// draw visual elements
+  svg
+    .append('g')
+    .attr('class','scatter-points')
+    .selectAll('circle')
+    .data(govData)
+    .enter()
+    .append("circle")
+    .attr("cx", (data) => xScale(data.poverty))
+    .attr("cy", (data) => yScale(data.healthcare))
+    .attr("r",15)
+    .attr("fill","pink");
+
+//axes
+const bottomAxis  = d3.axisBottom(xScale);
+const leftAxis  = d3.axisLeft(yScale);
+
+svg.append("g")
+    //.attr("transform",`translate(0,${chartHeight})`)
+    .attr('transform',`translate(0,${chartHeight -80})`)
+        .call(bottomAxis)
+
+  svg.append("g")
+    .call(leftAxis)
+
+}
+
+//Load Data
+d3.csv('data/data.csv',dataTypes).then(response =>
+    //console.log(response)
+    ready(response)
+  );
 
 
-//append the axis
-
-chart.append("g")
-    .attr('transform',`translate(0,${chartHeight})`)
-    .call(bottomAxis)
-  chart.append("g")
-  //leftAxis(g);
-        .call(leftAxis)
-
-  chart.selectAll("circle").call(function(selection) {
-    console.log(selection);
-  });
-
-  //set up the scales
- console.log(healthData);
-
-
-});
 
 
