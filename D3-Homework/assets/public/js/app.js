@@ -2,6 +2,8 @@
 
 console.log("hello!");
 
+//Create function to convert data types in json
+
 //SET UP for svg wrapper
 let svgWidth = 960;
 let svgHeight = 600;
@@ -73,7 +75,7 @@ chart.append("g")
   });
 
   //set up the scales
- //console.log(healthData);
+ console.log(healthData);
 
 
 });
