@@ -52,6 +52,8 @@ function ready(govData){
 
 
 //Draw base
+
+//TODO Read about margin pattern
 const svg = d3.select('.chart')
     .append('svg')
     .attr('height',chartHeight)
@@ -76,13 +78,17 @@ const svg = d3.select('.chart')
 const bottomAxis  = d3.axisBottom(xScale);
 const leftAxis  = d3.axisLeft(yScale);
 
-svg.append("g")
-    //.attr("transform",`translate(0,${chartHeight})`)
-    .attr('transform',`translate(0,${chartHeight -80})`)
-        .call(bottomAxis)
+// ! fix position of axes
+
+
+svg.append('g')
+    .attr('class','x-axis')
+    .attr("transform", `translate(0,420)`)
+
+    .call(bottomAxis)
 
   svg.append("g")
-    .call(leftAxis)
+     .call(leftAxis)
 
 }
 
