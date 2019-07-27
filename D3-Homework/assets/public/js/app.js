@@ -72,7 +72,6 @@ const svg = d3.select('.chart')
     .attr("cx", (data) => xScale(data.poverty))
     .attr("cy", (data) => yScale(data.healthcare))
     .attr("r",15)
-    .attr("fill","pink");
 
 //axes
 const bottomAxis  = d3.axisBottom(xScale);
@@ -80,15 +79,23 @@ const leftAxis  = d3.axisLeft(yScale);
 
 // ! fix position of axes
 
-
+console.log(chartHeight);
 svg.append('g')
     .attr('class','x-axis')
-    .attr("transform", `translate(0,420)`)
-
-    .call(bottomAxis)
+    .attr("transform", `translate(0,430)`)
+    .call(bottomAxis);
 
   svg.append("g")
-     .call(leftAxis)
+     .call(leftAxis);
+
+
+  // * Add tooltips
+
+  function mouseover(){
+
+  }
+  const tip = d3.select('.tooltip');
+  d3.select('.scatter-points').on('mouseover',mouseover)
 
 }
 

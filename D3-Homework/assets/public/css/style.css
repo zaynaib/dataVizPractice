@@ -1,0 +1,9 @@
+.scatter-points{
+    fill: pink;
+}
+
+.tooltip{
+    position: fixed;
+    opacity:0;
+
+}
