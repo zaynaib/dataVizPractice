@@ -91,11 +91,46 @@ svg.append('g')
 
   // * Add tooltips
 
+  const tip = d3.selectAll('.tooltip');
+
   function mouseover(){
+        tip
+        .style('left', `${d3.event.clientX}px`)
+        .style('top', `${d3.eventclientY}px` )
+        .style('opacity', 0.98)
+        .html('Hello tip!')
+        //debugger;
+        console.log('it works')
+        console.log(d3.event.clientX, d3.event.clientY)
+
 
   }
-  const tip = d3.select('.tooltip');
-  d3.select('.scatter-points').on('mouseover',mouseover)
+
+  
+  function mousemove(){
+    tip
+    .style('left', `${d3.event.clientX}px`)
+    .style('top', `${d3.eventclientY}px` )
+ 
+
+
+}
+
+
+function mouseout(){
+  //reset
+
+  tip
+    .style('opacity',0)
+ 
+
+
+}
+
+  d3.select('.scatter-points')
+        .on('mouseover',mouseover)
+        //.on('mousemove',mousemove)
+        //.on('mouseout',mouseout)
 
 }
 
