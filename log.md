@@ -1,4 +1,4 @@
-# 30 Days Of Code - Log
+# 30 Days Of Data Viz - Log
 
 ## Table of Contents
 
@@ -49,7 +49,7 @@ An accessor property is one that is defined in terms of getters and setters, not
 Margin Conventions:
 https://observablehq.com/@d3/margin-convention
 
-Key Concepts to D3.js
+*Key Concepts to D3.js*
 
 Think of D3.js similar to The Grammar of Graphics.
 Hadley Wickham wrote a great paper about this book. 
@@ -78,7 +78,9 @@ Practice creating a basic line chart from a basic dataset.
 
 Basic Datasets : 
 http://veekaybee.github.io/2018/07/23/small-datasets/
+
 https://vincentarelbundock.github.io/Rdatasets/datasets.html
+
 https://www.kaggle.com/rtatman/fun-beginner-friendly-datasets
 
 
