@@ -59,7 +59,6 @@ Essentially think of a graph like a photo in photoshop.
 Photoshop uses layers in order to create a beautiful image.
 Its a similar to D3.js. 
 
-
 1. Access the Data
 2. Set up your getters and setter functions /Accessors for your data
 3. Set the dimensions of your chart(Check out Margin Conventions)
