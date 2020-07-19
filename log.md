@@ -3,7 +3,7 @@
 ## Table of Contents
 
 - [Day 0](#Day-0)
-- [Day 1](#day1-july-19-2020-sunday)
+- [Day 1](#day-1-july-19-2020-sunday)
 
 ## Day 0: July 18, 2020 
 
@@ -15,7 +15,7 @@
 ![](https://media.giphy.com/media/Jqzc0G6oQihOkzyCOf/giphy.gif)
 
 
-## Day1: July 19, 2020, Sunday
+## Day 1: July 19, 2020, Sunday
 
 **Today's Progress**:  Made my first d3 data visualization for this 30 day challenge. It was a line graph of weather day for the year of 2018. Finished half of chapter 1 of Amelia's book. 
 
@@ -66,7 +66,7 @@ Its a similar to D3.js.
 4. Draw the canvas - add SVG to HTML
 5. set up your scales
 6. Draw the graph
-7. Draw the x and y axis
+7. Draw the axis
 
 
 **Link(s) to work**: [First Graph](./Day1)
