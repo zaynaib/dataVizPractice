@@ -5,6 +5,9 @@ async function drawLineChart(){
     const dataset = await d3.csv("./clean_car_value.csv");
     console.log(dataset);
 
+    //returns undefined I don't know why
+    console.log(dataset.Year)
+
     //create a formatter for dollar values
     //create our accessor functions
     const yAccessor = d => parseInt(d.Value)
