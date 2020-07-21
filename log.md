@@ -2,8 +2,16 @@
 
 ## Table of Contents
 
-- [Day 0](#Day-0)
-- [Day 1](#day-1-july-19-2020-sunday)
+  [Table of Contents](#table-of-contents)
+- [30 Days Of Data Viz - Log](#30-days-of-data-viz---log)
+  - [Table of Contents](#table-of-contents)
+  - [Day 0: July 18, 2020](#day-0-july-18-2020)
+  - [Day 1: July 19, 2020, Sunday](#day-1-july-19-2020-sunday)
+    - [Day 2: July 20, Monday](#day-2-july-20-monday)
+
+
+ 
+
 
 ## Day 0: July 18, 2020 
 
@@ -87,9 +95,16 @@ https://www.kaggle.com/rtatman/fun-beginner-friendly-datasets
 
 ### Day 2: July 20, Monday
 
-**Today's Progress**: I've gone through many exercises on FreeCodeCamp.
+**Today's Progress**: Decided to apply what I learned on a data set that was not given from the book. I found a website that teaches basic math skills to childern 
+https://www.mathgoodies.com/lessons/graphs/line .
 
-**Thoughts** I've recently started coding, and it's a great feeling when I finally solve an algorithm challenge after a lot of attempts and hours spent.
+ Lets see how this goes.
+
+**Emotion**
+![](https://media.giphy.com/media/26BGt3EbvrWbiZpUQ/giphy.gif)
+
+**Thoughts** I've been procrastinating a lot today. 😭
+
 
 **Link(s) to work**
 1. [Find the Longest Word in a String](https://www.freecodecamp.com/challenges/find-the-longest-word-in-a-string)
