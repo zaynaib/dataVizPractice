@@ -2,12 +2,12 @@
 
 ## Table of Contents
 
-  [Table of Contents](#table-of-contents)
 - [30 Days Of Data Viz - Log](#30-days-of-data-viz---log)
   - [Table of Contents](#table-of-contents)
   - [Day 0: July 18, 2020](#day-0-july-18-2020)
   - [Day 1: July 19, 2020, Sunday](#day-1-july-19-2020-sunday)
-    - [Day 2: July 20, Monday](#day-2-july-20-monday)
+  - [Day 2: July 20, Monday](#day-2-july-20-monday)
+  - [Day 3: July 21, Tuesday](#day-3-july-21-tuesday)
 
 
  
@@ -93,7 +93,7 @@ https://www.kaggle.com/rtatman/fun-beginner-friendly-datasets
 
 
 
-### Day 2: July 20, Monday
+## Day 2: July 20, Monday
 
 **Today's Progress**: Decided to apply what I learned on a data set that was not given from the book. I found a website that teaches basic math skills to childern 
 https://www.mathgoodies.com/lessons/graphs/line .
@@ -106,6 +106,24 @@ https://www.mathgoodies.com/lessons/graphs/line .
 **Thoughts** I've been procrastinating a lot today. 😭
 
 
+
+## Day 3: July 21, Tuesday
+
+**Today's Progress**: I spent today finishing up the data visualization that I had in mind for Day 2.  I'm glad I choose a simple dataset from that children's website. It took me awhile to do some data munging. Most definitely need practice with python regex, reading and writing files. After I got the data cleaning part down everything else fell into place.
+
+**Photo of Wha
+![](images/daty)
+
+**Emotion**
+![](https://media.giphy.com/media/3orif6xGivJOlo74KA/giphy.gif)
+
+**Thoughts** :
+Making sure that I work on this challenge earlier in the day makes it easier to actually do the thing. 
+
+For the rest of this challenge I'm going to try to take it slow and break each part into a concepts. So, my game plan moving forward is to time block my studying of D3.js into two hours.
+
+1 hour will be for studying concepts. The 2nd hour will be for executing those concepts into practice.
+
+
 **Link(s) to work**
-1. [Find the Longest Word in a String](https://www.freecodecamp.com/challenges/find-the-longest-word-in-a-string)
-2. [Title Case a Sentence](https://www.freecodecamp.com/challenges/title-case-a-sentence)
+[Second Graph](./Day2)

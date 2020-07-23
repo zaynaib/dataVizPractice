@@ -26,7 +26,7 @@ async function drawLineChart(){
         },
     }
 
-    //compute size or bounds based on the dimensions objec
+    //compute size or bounds based on the dimensions object
 
     dimensions.boundedWidth = dimensions.width - dimensions.margin.left
     dimensions.boundedHeight= dimensions.height - dimensions.margin.top - dimensions.margin.bottom

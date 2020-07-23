@@ -24,7 +24,7 @@ with open('./sarah_car_value.csv','r+') as file:
 
 
 with open('./clean_car_value.csv','w') as csv_file:
-    csv_file.write(f'Year,Value \n')
+    csv_file.write(f'Year,Value\n')
 
     for line in readlines:
         csv_file.write(f'{line[0]},{line[1]}\n')
