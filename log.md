@@ -8,6 +8,8 @@
   - [Day 1: July 19, 2020, Sunday](#day-1-july-19-2020-sunday)
   - [Day 2: July 20, Monday](#day-2-july-20-monday)
   - [Day 3: July 21, Tuesday](#day-3-july-21-tuesday)
+  - [Day 4: July 22, Wednesday](#day-4-july-22-wednesday)
+  - [Day 5: July 23, Thursday](#day-5-july-23-thursday)
 
 
  
@@ -112,7 +114,7 @@ https://www.mathgoodies.com/lessons/graphs/line .
 **Today's Progress**: I spent today finishing up the data visualization that I had in mind for Day 2.  I'm glad I choose a simple dataset from that children's website. It took me awhile to do some data munging. Most definitely need practice with python regex, reading and writing files. After I got the data cleaning part down everything else fell into place.
 
 **Photo of Wha
-![](images/daty)
+![](images/day2.PNG)
 
 **Emotion**
 ![](https://media.giphy.com/media/3orif6xGivJOlo74KA/giphy.gif)
@@ -127,3 +129,100 @@ For the rest of this challenge I'm going to try to take it slow and break each p
 
 **Link(s) to work**
 [Second Graph](./Day2)
+
+
+
+## Day 4: July 22, Wednesday
+
+**Today's Progress**: I did not do anything today. 
+
+**Photo of What I did today**
+
+It's blank because I did do anything today.
+
+**Emotion**
+
+![](https://media.giphy.com/media/cuPm4p4pClZVC/giphy.gif)
+
+
+**Today I Learned (TIL)**:
+
+I reviewed the Margin Convention in D3.js. It still confuses me. But basically the Margin Convention is a way to add room for axis labels and ticks for our data visualization. 
+
+Logic flow of creating Margins:
+
+//Setup the height and width of the entire graph. This will include axes.
+
+width = 941
+height = 500
+
+//set up room for your margins using css properties.
+
+margin = ({top: 20, right: 30, bottom: 30, left: 40})
+
+
+//then subtract the margins from the width and height of your chart.
+
+xAxis = g => g
+    .attr("transform", `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x))
+
+
+**Thoughts** :
+
+I played myself today. If I wait until the end of the day I will have no motivation to create a data viz.
+
+
+**Link(s) to work**
+
+
+**Resources**:
+
+[The D3.js Margin Convention Curran Kelleher](https://www.youtube.com/watch?v=M3YsZZidQXQ)
+
+[Tyler Wolf 25 days of D3.js](https://observablehq.com/@thetylerwolf/25-days-of-d3)
+
+[Mike Bostock Margin Convention](https://observablehq.com/@d3/margin-convention)
+
+
+## Day 5: July 23, Thursday
+
+**Today's Progress**: I did not do anything today. 
+
+**Photo of What I did today**
+
+It's blank because I did do anything today.
+
+**Emotion**
+![](https://media.giphy.com/media/3orif6xGivJOlo74KA/giphy.gif)
+
+
+**Today I Learned (TIL)**:
+
+what is d3.extent?
+
+Is a d3 helper function that finds the minmum and maximum values of a dataset. The parameters it takes is a dataset and an accessor function.
+
+how does css transform work?
+
+I learned what joins are.
+
+what is a call >
+
+Accessors 
+
+https://observablehq.com/@thetylerwolf/day-3-controlling-the-flow-of-data?collection=@thetylerwolf/25-days-of-d3
+
+**Thoughts** :
+
+I played myself today. If I wait until the end of the day I will have no motivation to create a data viz.
+
+
+**Link(s) to work**
+
+
+**Resources**:
+
+[David Walsh Blog 5 Cruical Concepts to know when working with D3.js](https://davidwalsh.name/learning-d3)
+
+[Mike Bostock Data Join](https://observablehq.com/@d3/selection-join)
