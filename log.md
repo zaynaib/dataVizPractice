@@ -10,6 +10,7 @@
   - [Day 3: July 21, Tuesday](#day-3-july-21-tuesday)
   - [Day 4: July 22, Wednesday](#day-4-july-22-wednesday)
   - [Day 5: July 23, Thursday](#day-5-july-23-thursday)
+  - [Day 6: July 24, Friday](#day-6-july-24-friday)
 
 
  
@@ -18,7 +19,7 @@
 ## Day 0: July 18, 2020 
 
 
-**Today's Progress**: I revamp my dataVizPractice repo for my 30 days of D3.js challenge.
+**Today's Progress**: I revamped my dataVizPractice repo for my 30 days of D3.js challenge.
 
 **Emotion:** 
 
@@ -27,7 +28,9 @@
 
 ## Day 1: July 19, 2020, Sunday
 
-**Today's Progress**:  Made my first d3 data visualization for this 30 day challenge. It was a line graph of weather day for the year of 2018. Finished half of chapter 1 of Amelia's book. 
+**Today's Progress**: 
+1.  Made my first d3 data visualization for this 30 day challenge. It was a line graph of weather day for the year of 2018.
+2.   Finished half of chapter 1 of Amelia's book. 
 
 **Emotion:**
 
@@ -41,7 +44,7 @@
 
 [Async/Await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await)
 
-What does Async and await do 
+What does Async and await do?
 
 Async/await makes your code look synchronous, and in a way it makes it behave more synchronously. The await keyword blocks execution of all the code that follows until the promise fulfills, exactly as it would with a synchronous operation.
 
@@ -86,6 +89,7 @@ Practice creating a basic line chart from a basic dataset.
 **Resources**
 
 Basic Datasets : 
+
 http://veekaybee.github.io/2018/07/23/small-datasets/
 
 https://vincentarelbundock.github.io/Rdatasets/datasets.html
@@ -113,10 +117,11 @@ https://www.mathgoodies.com/lessons/graphs/line .
 
 **Today's Progress**: I spent today finishing up the data visualization that I had in mind for Day 2.  I'm glad I choose a simple dataset from that children's website. It took me awhile to do some data munging. Most definitely need practice with python regex, reading and writing files. After I got the data cleaning part down everything else fell into place.
 
-**Photo of Wha
+**Photo of What I did**
 ![](images/day2.PNG)
 
 **Emotion**
+
 ![](https://media.giphy.com/media/3orif6xGivJOlo74KA/giphy.gif)
 
 **Thoughts** :
@@ -137,8 +142,7 @@ For the rest of this challenge I'm going to try to take it slow and break each p
 **Today's Progress**: I did not do anything today. 
 
 **Photo of What I did today**
-
-It's blank because I did do anything today.
+Nothing to see here
 
 **Emotion**
 
@@ -156,7 +160,7 @@ Logic flow of creating Margins:
 width = 941
 height = 500
 
-//set up room for your margins using css properties.
+//set up room for your axes through margins using css properties.
 
 margin = ({top: 20, right: 30, bottom: 30, left: 40})
 
@@ -187,14 +191,17 @@ I played myself today. If I wait until the end of the day I will have no motivat
 
 ## Day 5: July 23, Thursday
 
-**Today's Progress**: I did not do anything today. 
+**Today's Progress**: I made a scatter plot today.
 
 **Photo of What I did today**
 
-It's blank because I did do anything today.
+![](./images/day3.PNG)
+
+
+created a scatter plot
 
 **Emotion**
-![](https://media.giphy.com/media/3orif6xGivJOlo74KA/giphy.gif)
+![](https://media.giphy.com/media/Jsi6i3QIxN14DuUhkX/giphy.gif)
 
 
 **Today I Learned (TIL)**:
@@ -205,13 +212,16 @@ Is a d3 helper function that finds the minmum and maximum values of a dataset. T
 
 how does css transform work?
 
-I learned what joins are.
+what is the join function?
+The join function complete negates the need for the enter,exit update pattern for creating a deleting svg shapes when the data changes in a d3 graph. I'm glad because that whole update pattern was confusing.
 
-what is a call >
+what is a call?
 
-Accessors 
+The call function in d3 makes it easier to create x and y axes on to the graph. The call function does not break up the chaining of functions.
 
-https://observablehq.com/@thetylerwolf/day-3-controlling-the-flow-of-data?collection=@thetylerwolf/25-days-of-d3
+Here is a stackOverflow post about it:
+https://stackoverflow.com/questions/12805309/javascript-library-d3-call-function
+
 
 **Thoughts** :
 
@@ -219,10 +229,56 @@ I played myself today. If I wait until the end of the day I will have no motivat
 
 
 **Link(s) to work**
-
+[Scatter Plot](./Day3)
 
 **Resources**:
 
 [David Walsh Blog 5 Cruical Concepts to know when working with D3.js](https://davidwalsh.name/learning-d3)
 
 [Mike Bostock Data Join](https://observablehq.com/@d3/selection-join)
+
+[Tyler Wolf 25 days of d3.js](https://observablehq.com/@thetylerwolf/day-3-controlling-the-flow-of-data?collection=@thetylerwolf/25-days-of-d3)
+
+
+## Day 6: July 24, Friday
+
+**Today's Progress**: I made a bar chart today.
+
+**Photo of What I did today**
+
+![](./images/day4.PNG)
+
+
+**Emotion**
+![](https://media.giphy.com/media/l1KVagaHkUqNvlQPK/giphy.gif)
+
+
+**Today I Learned (TIL)**:
+Yeah... I did not understand what was going on. Bar graphs in d3.js are not as straight forwad as a line or scatter plot.
+
+Histogram workflow
+
+- call d3 function histogram
+  d3.histogram
+
+- pass a domain to tell the histogram function the range of values you want. This case its usually the scale of the metric you want to find the frequency of.
+  
+- pass in values - pass in the values of the metric you are trying to plot.
+
+
+- then use thresholds to tell d3 how many bins you want 
+
+
+
+**Thoughts** : I'm glad that this was the first thing that I did in the morning. I would not have any motivation to do it in the middle of the day. I had to read this bar chart chart multiple times.
+
+
+**Link(s) to work**
+[Bar Plot](./Day4)
+
+**Resources**:
+
+[D3 graph gallery](https://www.d3-graph-gallery.com/graph/histogram_basic.html)
+
+[Histogram Observable](https://observablehq.com/@d3/histogram)
+
