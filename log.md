@@ -274,6 +274,7 @@ Histogram workflow
 
 
 **Link(s) to work**
+
 [Bar Plot](./Day4)
 
 **Resources**:
