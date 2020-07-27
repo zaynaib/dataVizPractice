@@ -17,16 +17,23 @@ drawBarChart = async () =>{
         console.log(key);
     });
 
-    const t = Array.from(pokemonByTypes,([key,values]) => {
+    const types = Array.from(pokemonByTypes,([key,values]) => {
         return key;
     });
 
-    console.log(t,"types")
 
 
     Array.from(pokemonByTypes,([key,values]) => {
         console.log(values.map(d =>d.name));
     });
+
+    
+    const pokemonTypeCount = Array.from(pokemonByTypes,([key,values]) => {
+       return values.length
+    });
+
+    console.log(pokemonTypeCount)
+
     // Array.from(athletesBySport, ([key, values]) 
 
     //2. create the dimensions
@@ -60,10 +67,6 @@ drawBarChart = async () =>{
     //each type of pokemong
     //the number for each type
 
-
-    var types = [...new Set(dataset.map(t => t.type1))];
-    console.log(types)
-
             
 
     const xScale = d3.scaleBand()
@@ -72,6 +75,8 @@ drawBarChart = async () =>{
                     .padding(0.1)
 
     console.log(xScale.bandwidth())
+
+    console.log(xScale('water'))
 
     const binsGenerator = d3.histogram()
     .domain(xScale.domain())
@@ -83,28 +88,21 @@ drawBarChart = async () =>{
 
 
 
-    // const yScale = d3.scaleLinear()
-    //                 .range([dimensions.boundedHeight,0])
-    //                 .domain(xScale.domain())
+    const yScale = d3.scaleLinear()
+                    .domain([0,d3.max(pokemonTypeCount)])
+                    .range([dimensions.boundedHeight,0])
+                    .nice()
 
     //we are looping through an object so we need to use object entries
-    /*
-    
-    Object.entries(d).forEach(([key,value]) =>{
 
-    })
-
-    */
-
-
-    console.log(pokemonByTypes.values())
+    // console.log(pokemonByTypes.values())
     
     wrapper.append("g")
         .selectAll('rect')
-        .data(dataset)
+        .data(pokemonByTypes)
         .enter()
         .append('rect')
-        .attr('y',d => xScale(d.keys()))
+        .attr('y',d => xScale(types))
         .attr('height', xScale.bandwidth())
         .attr('width', d => d.values());
     
