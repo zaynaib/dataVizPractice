@@ -45,6 +45,8 @@ drawBarChart = async () =>{
     dimensions.boundedWidth = dimensions.width - dimensions.margin.left - dimensions.margin.right;
     dimensions.boundedHeight = dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
+    //3. draw canvas
+
     const wrapper = d3.select("#wrapper")
                     .append("svg")
                     .attr("width",dimensions.width)
@@ -54,12 +56,12 @@ drawBarChart = async () =>{
 
 
 
-    //3. draw canvas
 
     //each type of pokemong
     //the number for each type
 
-            
+    //4. create scales
+
 
     const xScale = d3.scaleBand()
                     .domain(types)
@@ -68,7 +70,7 @@ drawBarChart = async () =>{
 
     console.log(xScale('water'))
 
-     // let's get the counts by type to create our max
+  // let's get the counts by type to create our max
   // - Object.values() gets the values from the object
   // - [...Object.values()] turns that into an array
   // - map(v => v.length) takes the value arrays and converts to counts
@@ -86,21 +88,30 @@ drawBarChart = async () =>{
 
     console.log(yScale(78))
     console.log(xScale('water'))
-    // console.log(pokemonByTypes.values())
+
+    //5. draw data
+
     
     wrapper.append("g")
         .selectAll('rect')
         .data(types)
         .join('rect')
         // xScale takes the type, returns the left/right location
-        .attr("x", function(d) { return xScale(d); })
+        .attr("x", d => xScale(d))
+
          // yScale gets the count from the object
-        .attr("y", function(d) { return yScale(byType[d].length); })
+        .attr("y", d => yScale(byType[d].length))
+
         .attr("width", xScale.bandwidth())
+
         // height has to be the distance from bar top to chart bottom
         .attr("height", d=> dimensions.boundedHeight - yScale(byType[d].length))
-       
+    
+    //6. draw peripherals
 
+
+    //create labels
+    //add text of the number on top
     wrapper.selectAll("text")
             .data(types)
             .join('text')
@@ -108,17 +119,6 @@ drawBarChart = async () =>{
             .attr("x", d => xScale(d) )
            .attr("y", d => yScale(byType[d].length)-5);
         
-   
-    
-    
-
-
-    //4. create scales
-
-    //5. draw data
-
-    //6. draw peripherals
-
     //7. set up interactions
     
 }
