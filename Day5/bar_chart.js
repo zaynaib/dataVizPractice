@@ -4,38 +4,30 @@ drawBarChart = async () =>{
     const dataset = await d3.csv('./pokemon.csv');
     console.log(dataset);
 
-    // pokemon = d3.group(dataset, d=>d.type1)
-    // console.log(pokemon)
+    var byType = {};
 
-    const metricAccesor = d => d.type1; 
-    pokemonByTypes = d3.group(dataset,metricAccesor)
-    console.log(pokemonByTypes)
+    //Maps are harder to work with
 
-    console.log(pokemonByTypes.get('water'))
+    dataset.forEach(function(row) {
+        if (!byType[row.type1])
 
-    Array.from(pokemonByTypes,([key,values]) => {
-        console.log(key);
-    });
+            byType[row.type1] = [];
+            byType[row.type1].push(row);
+        
+       
+      });
 
-    const types = Array.from(pokemonByTypes,([key,values]) => {
-        return key;
-    });
+      console.log(byType)
 
+  // we can use Object.keys to get all the types from the grouped object
+    const types = Object.keys(byType);
+    console.log("TYPES", types);
 
+    //get another way to get the types into an array
+    var arrayTypes = [...new Set(dataset.map(d=>d.type1))]
+    console.log(arrayTypes)
 
-    Array.from(pokemonByTypes,([key,values]) => {
-        console.log(values.map(d =>d.name));
-    });
-
-    
-    const pokemonTypeCount = Array.from(pokemonByTypes,([key,values]) => {
-       return values.length
-    });
-
-    console.log(pokemonTypeCount)
-
-    // Array.from(athletesBySport, ([key, values]) 
-
+   
     //2. create the dimensions
     const width = 600;
 
@@ -74,13 +66,18 @@ drawBarChart = async () =>{
                     .range([0,dimensions.boundedWidth])
                     .padding(0.1)
 
-    console.log(xScale.bandwidth())
-
     console.log(xScale('water'))
 
+     // let's get the counts by type to create our max
+  // - Object.values() gets the values from the object
+  // - [...Object.values()] turns that into an array
+  // - map(v => v.length) takes the value arrays and converts to counts
+
+    var counts = [...Object.values(byType)].map(v=>v.length);
+    console.log(counts)
 
     const yScale = d3.scaleLinear()
-                    .domain([0,d3.max(pokemonTypeCount)])
+                    .domain([0,d3.max(counts)])
                     .range([dimensions.boundedHeight,0])
                     .nice()
 
@@ -93,17 +90,25 @@ drawBarChart = async () =>{
     
     wrapper.append("g")
         .selectAll('rect')
-        .data(pokemonByTypes)
+        .data(types)
         .join('rect')
-        .attr("x", function(d) { return xScale(types); })
-        .attr("y", function(d) { return yScale(pokemonTypeCount); })
+        // xScale takes the type, returns the left/right location
+        .attr("x", function(d) { return xScale(d); })
+         // yScale gets the count from the object
+        .attr("y", function(d) { return yScale(byType[d].length); })
         .attr("width", xScale.bandwidth())
-        .attr("height", d=> dimensions.boundedHeight - yScale(40))
-        // .attr("height", function(d) { return height - y(d.sales); });
-  
-        // .attr('y',d => xScale(types))
-        // .attr('height', xScale.bandwidth())
-        // .attr('width', d => d.values());
+        // height has to be the distance from bar top to chart bottom
+        .attr("height", d=> dimensions.boundedHeight - yScale(byType[d].length))
+       
+
+    wrapper.selectAll("text")
+            .data(types)
+            .join('text')
+            .text( d => d)
+            .attr("x", d => xScale(d) )
+           .attr("y", d => yScale(byType[d].length)-5);
+        
+   
     
     
 
