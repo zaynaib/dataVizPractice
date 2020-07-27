@@ -4,8 +4,15 @@ drawBarChart = async () =>{
     const dataset = await d3.csv('./pokemon.csv');
     console.log(dataset);
 
+    // pokemon = d3.group(dataset, d=>d.type1)
+    // console.log(pokemon)
 
-    const metricAccesor = d => d.type1;    
+    const metricAccesor = d => d.type1; 
+    pokemonByTypes = d3.group(dataset,metricAccesor)
+    console.log(pokemonByTypes)
+
+
+
 
     //2. create the dimensions
     const width = 600;
@@ -35,6 +42,13 @@ drawBarChart = async () =>{
 
     //3. draw canvas
 
+    // const bandScale = d3.scaleBand()
+    //                  .domain(dataset,metricAccesor)
+    //                  .range([0,dimensions.boundedWidth])
+    //                  .padding(0.1)
+
+            
+
     const xScale = d3.scaleBand()
                     .domain(dataset,metricAccesor)
                     .range([0,dimensions.boundedWidth])
@@ -42,16 +56,38 @@ drawBarChart = async () =>{
 
     console.log(xScale.bandwidth())
 
+    const yAccessor = d => d.length;
+
+
+
     // const yScale = d3.scaleLinear()
     //                 .range([dimensions.boundedHeight,0])
     //                 .domain(xScale.domain())
 
-    const binsGenerator = d3.histogram()
-                          .domain(xScale.domain())
-                          .value(metricAccesor)
-                          .thresholds(12)
-    const bins = binsGenerator(dataset)
-    console.log(bins)
+    //we are looping through an object so we need to use object entries
+    /*
+    
+    Object.entries(d).forEach(([key,value]) =>{
+
+    })
+
+    */
+
+     
+    //what is a map iterator?
+    console.log(pokemonByTypes.keys())
+    console.log(pokemonByTypes.values())
+    
+    wrapper.append("g")
+        .selectAll('rect')
+        .data(pokemonByTypes)
+        .enter()
+        .append('rect')
+        .attr('y',d => xScale(d.keys()))
+        .attr('height', xScale.bandwidth())
+        .attr('width', d => d.values());
+    
+    
 
 
     //4. create scales
