@@ -78,15 +78,6 @@ drawBarChart = async () =>{
 
     console.log(xScale('water'))
 
-    const binsGenerator = d3.histogram()
-    .domain(xScale.domain())
-    .value(metricAccessor)
-    .thresholds(12)
-
-
-    const yAccessor = d => d.length;
-
-
 
     const yScale = d3.scaleLinear()
                     .domain([0,d3.max(pokemonTypeCount)])
@@ -95,16 +86,24 @@ drawBarChart = async () =>{
 
     //we are looping through an object so we need to use object entries
 
+
+    console.log(yScale(78))
+    console.log(xScale('water'))
     // console.log(pokemonByTypes.values())
     
     wrapper.append("g")
         .selectAll('rect')
         .data(pokemonByTypes)
-        .enter()
-        .append('rect')
-        .attr('y',d => xScale(types))
-        .attr('height', xScale.bandwidth())
-        .attr('width', d => d.values());
+        .join('rect')
+        .attr("x", function(d) { return xScale(types); })
+        .attr("y", function(d) { return yScale(pokemonTypeCount); })
+        .attr("width", xScale.bandwidth())
+        .attr("height", d=> dimensions.boundedHeight - yScale(40))
+        // .attr("height", function(d) { return height - y(d.sales); });
+  
+        // .attr('y',d => xScale(types))
+        // .attr('height', xScale.bandwidth())
+        // .attr('width', d => d.values());
     
     
 
