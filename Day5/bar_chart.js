@@ -9,12 +9,10 @@ drawBarChart = async () =>{
     //Maps are harder to work with
 
     dataset.forEach(function(row) {
-        if (!byType[row.type1])
-
+        if (!byType[row.type1]){
             byType[row.type1] = [];
+        }
             byType[row.type1].push(row);
-        
-       
       });
 
       console.log(byType)
@@ -66,7 +64,7 @@ drawBarChart = async () =>{
     const xScale = d3.scaleBand()
                     .domain(types)
                     .range([0,dimensions.boundedWidth])
-                    .padding(0.1)
+                    .padding(0.2)
 
     console.log(xScale('water'))
 
@@ -92,7 +90,7 @@ drawBarChart = async () =>{
     //5. draw data
 
     
-    wrapper.append("g")
+   const barRect = wrapper.append("g")
         .selectAll('rect')
         .data(types)
         .join('rect')
@@ -106,18 +104,30 @@ drawBarChart = async () =>{
 
         // height has to be the distance from bar top to chart bottom
         .attr("height", d=> dimensions.boundedHeight - yScale(byType[d].length))
+        .attr("fill","teal")
+
+
+     const textBar = barRect.append("text")
+            .attr("x", d=> xScale(d))
+            .attr("y", d=> yScale(byType[d].length))
+            .text("12")
+        
+        console.log(textBar)
     
     //6. draw peripherals
+    const xAxisGenerator = d3.axisBottom()
+                            .scale(xScale)
+    const barAxis = wrapper.append("g")
+            .call(xAxisGenerator)
+            .style("transform", `translateY(${dimensions.boundedHeight}px)`)
+            .append('text')
+            .attr("x", d => dimensions.boundedWidth/2 )
+            .attr("y", d => dimensions.margin.bottom-20);
 
+    // bar text
 
-    //create labels
-    //add text of the number on top
-    wrapper.selectAll("text")
-            .data(types)
-            .join('text')
-            .text( d => d)
-            .attr("x", d => xScale(d) )
-           .attr("y", d => yScale(byType[d].length)-5);
+    console.log(byType)
+
         
     //7. set up interactions
     
