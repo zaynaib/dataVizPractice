@@ -106,13 +106,15 @@ drawBarChart = async () =>{
         .attr("height", d=> dimensions.boundedHeight - yScale(byType[d].length))
         .attr("fill","teal")
 
+        barRect.selectAll("text")
+        .data(types)
+        .join("text")
+        .attr("x", d=>xScalle(d))
+        .attr("y", d => yScale(byType[d].length))
+        .text(d => byType[d].length)
 
-     const textBar = barRect.append("text")
-            .attr("x", d=> xScale(d))
-            .attr("y", d=> yScale(byType[d].length))
-            .text("12")
         
-        console.log(textBar)
+
     
     //6. draw peripherals
     const xAxisGenerator = d3.axisBottom()
@@ -127,7 +129,6 @@ drawBarChart = async () =>{
     // bar text
 
     console.log(byType)
-
         
     //7. set up interactions
     
