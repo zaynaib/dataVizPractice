@@ -11,6 +11,8 @@
   - [Day 4: July 22, Wednesday](#day-4-july-22-wednesday)
   - [Day 5: July 23, Thursday](#day-5-july-23-thursday)
   - [Day 6: July 24, Friday](#day-6-july-24-friday)
+  - [Day 7-9: July 25-July 27, Saturday- Monday](#day-7-9-july-25-july-27-saturday--monday)
+  - [Day 10-11: July 28-27, Tuesday - Wednesday](#day-10-11-july-28-27-tuesday---wednesday)
 
 
  
@@ -250,6 +252,7 @@ I played myself today. If I wait until the end of the day I will have no motivat
 
 
 **Emotion**
+
 ![](https://media.giphy.com/media/l1KVagaHkUqNvlQPK/giphy.gif)
 
 
@@ -282,4 +285,108 @@ Histogram workflow
 [D3 graph gallery](https://www.d3-graph-gallery.com/graph/histogram_basic.html)
 
 [Histogram Observable](https://observablehq.com/@d3/histogram)
+
+## Day 7-9: July 25-July 27, Saturday- Monday
+
+**Today's Progress**: 
+
+I made a bar chart of distribution of different pokemon types
+
+**Photo of What I did today**
+
+![](./images/day5.PNG)
+
+
+**Emotion**
+
+![](https://media.giphy.com/media/eKmpAC4gUZY5MRuU0I/giphy.gif)
+
+**Today I Learned (TIL)**:
+
+
+scaleOrdinal maps discrete values (specified by an array) to discrete values (also specified by an array)
+
+scaleBand:
+When creating bar charts scaleBand helps to determine the geometry of the bars, taking into account padding between each bar. The domain is specified as an array of values (one value for each band) and the range as the minimum and maximum extents of the bands (e.g. the total width of the bar chart).
+
+scaleBand is used to calculate the width for each bar in a histogram plot that use discrete values.
+
+I'm more familar with d3.group function. But I need to learn more about javascript data structures.
+
+What's the difference between
+
+- Map
+- array 
+- objects
+- set
+- spread
+- deconstructor
+
+
+And how do you iterate through these functions to get the data that I want.
+
+
+**Thoughts** :
+
+When in doubt always as for help. It took me three days but I was finally able to create a simple bar chart using pokemon data that I download from Kaggle. I felt confused and frustrated this entire weeked. I'm wondering what I got myself into. I have 20 more days until this challenge is complete. Hoping that it gets easier as the days go by.
+
+I'm glad that I had a network of people to ask for help when it comes to my D3.js questions.
+
+**Link(s) to work**
+
+
+**Resources**:
+
+[Kaggle Pokemon DataSet](https://www.kaggle.com/rounakbanik/pokemon)
+
+[D3 Group tutorial](https://observablehq.com/@d3/d3-group)
+
+[Stack Overflow question d3 group is not a function](https://stackoverflow.com/questions/63096249/uncaught-in-promise-typeerror-d3-group-is-not-a-function/63096566#63096566)
+
+[d3 in depth scales](https://www.d3indepth.com/scales/)
+
+
+
+## Day 10-11: July 28-27, Tuesday - Wednesday
+
+**Today's Progress**:  I added a x-axis and number labels to my bar chart.
+
+**Photo of What I did today**
+
+![](./images/day6.PNG)
+
+**Emotion**
+
+![](https://media.giphy.com/media/tIeCLkB8geYtW/giphy.gif)
+
+
+**Today I Learned (TIL)**:
+
+I learn that you cannot append text onto an svg shape.
+SVG shapes can have certain attributes and content and text is not one of them.
+
+In order to add text or axes onto a d3.js graph you have to add it to the svg wrapper. The SVG element can have content such as svg shapes like rect, circle and text. That why we append a svg group onto our svg wrapper whenever we want to append an element.
+
+It is because of the svg specification.
+See rect in
+SVG 1.1 
+
+**Thoughts** :
+
+
+**Link(s) to work**
+[](./Day5)
+
+
+**Resources**:
+
+[SVG 1.1 Rect](https://www.w3.org/TR/SVG11/shapes.html)    rect described in section 9.2
+
+[SVG 2.0 Rect](https://www.w3.org/TR/SVG2/shapes.html )     rect described in section 10.2
+
+[SVG Element Attributes](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg)
+
+[Pokemon Hex Colors](https://www.epidemicjohto.com/t882-type-colors-hex-colors)
+
+
 

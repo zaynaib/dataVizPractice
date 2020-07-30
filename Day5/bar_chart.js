@@ -105,13 +105,21 @@ drawBarChart = async () =>{
         // height has to be the distance from bar top to chart bottom
         .attr("height", d=> dimensions.boundedHeight - yScale(byType[d].length))
         .attr("fill","teal")
+    //     .append("text")
+    //     .attr("x", d => xScale(d))
 
-        barRect.selectAll("text")
+    //     // yScale gets the count from the object
+    //    .attr("y", d => yScale(byType[d].length-5))
+    //    .text("hello")
+
+
+        wrapper.append("g").selectAll("text")
         .data(types)
         .join("text")
-        .attr("x", d=>xScalle(d))
+        .attr("x", d=>xScale(d))
         .attr("y", d => yScale(byType[d].length))
         .text(d => byType[d].length)
+        .attr('fill','purple')
 
         
 
