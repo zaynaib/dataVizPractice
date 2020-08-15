@@ -37,9 +37,17 @@ const bounds = wrapper.append("g")
 const xScale = d3.scaleLinear()
                  .domain(d3.extent(dataset,xAcessor))
                  .range([0,dimensions.boundedWidth])
+                 .nice()
 
 console.log(xScale(2998))
 
+const yScale = d3.scaleLinear()
+                 .domain(d3.extent(dataset,xAcessor))
+                 .range([dimensions.boundedHeight,0])
+           
+
+console.log('apple')
+console.log(yScale(2998))
 const circle = bounds.append("g").selectAll('circle')
               .data(dataset)
               .join("circle")
