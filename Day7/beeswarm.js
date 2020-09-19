@@ -75,16 +75,14 @@ const xScale = d3.scaleLinear()
                   var u = d3.select('svg g')
                     .selectAll('circle')
                     .data(nodes)
-                
-                  u.enter()
-                    .append('circle')
+                    .join('circle')
                     .attr('r', function(d) {
                       return d.radius;
                     })
                     .style('fill', function(d) {
                       return "blue";
                     })
-                    .merge(u)
+
                     .attr('cx', function(d) {
                       return d.x;
                     })
@@ -92,7 +90,6 @@ const xScale = d3.scaleLinear()
                       return d.y + 50;
                     })
                 
-                  u.exit().remove();
                 }
 
      
