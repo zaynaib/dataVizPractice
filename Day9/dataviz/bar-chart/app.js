@@ -98,7 +98,7 @@ drawBarChart = async () =>{
       .attr("width", xScale.bandwidth())
 
       // height has to be the distance from bar top to chart bottom
-      .attr("height", d=> dimensions.boundedHeight-5)
+      .attr("height", d=> dimensions.boundedHeight- yScale(+d.Total))
       .attr("fill","teal")
 
 
