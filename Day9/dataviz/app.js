@@ -7,7 +7,7 @@ async function drawLineChart(){
     console.table(dataset);
 
     //accessor functions
-    const yAccessor = d => d.EstimatedInjuries;
+    const yAccessor = d => +d.EstimatedInjuries;
 
     //parses a string into a date object
     const dateParser = d3.timeParse("%Y");
