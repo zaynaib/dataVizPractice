@@ -99,9 +99,14 @@ drawBarChart = async () =>{
 
       // height has to be the distance from bar top to chart bottom
       .attr("height", d=> dimensions.boundedHeight- yScale(+d.Total))
-      .attr("fill","teal")
+      .attr("fill","teal").on("click",function(d,i){
+         console.log(d)
+         console.log(i)
+        
+        })
 
-
+     
+      
 
       wrapper.append("g").selectAll("text")
       .data(dataset)
@@ -112,24 +117,9 @@ drawBarChart = async () =>{
       .attr('fill','purple')
 
       
-
-  
-  //6. draw peripherals
-//   const xAxisGenerator = d3.axisBottom()
-//                           .scale(xScale)
-//   const barAxis = wrapper.append("g")
-//           .call(xAxisGenerator)
-//           .style("transform", `translateY(${dimensions.boundedHeight}px)`)
-//           .append('text')
-//           .attr("x", d => dimensions.boundedWidth/2 )
-//           .attr("y", d => dimensions.margin.bottom-20);
-
-//   // bar text
-
-//   console.log(byType)
-      
 //   //7. set up interactions
   
 }
 
 drawBarChart()
+
