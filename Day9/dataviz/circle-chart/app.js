@@ -1,94 +1,63 @@
-async function drawLineChart(){
+/ set the dimensions and margins of the graph
+var width = 450
+    height = 450
+    margin = 40
 
-    //Step 1 Understand the data structure
+// The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+var radius = Math.min(width, height) / 2 - margin
 
-    const dataset = await d3.csv("./fireworks.csv");
-    // console.log(dataset)
-    console.table(dataset);
+// append the svg object to the div called 'my_dataviz'
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-    //accessor functions
-    const yAccessor = d => +d.EstimatedInjuries;
+// create 2 data_set
+var data1 = {a: 9, b: 20, c:30, d:8, e:12}
+var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
 
-    //parses a string into a date object
-    const dateParser = d3.timeParse("%Y");
-    const xAccessor = d => dateParser(d.Year);
+// set the color scale
+var color = d3.scaleOrdinal()
+  .domain(["a", "b", "c", "d", "e", "f"])
+  .range(d3.schemeDark2);
 
-    console.log(dataset[0])
+// A function that create / update the plot for a given variable:
+function update(data) {
 
-    console.log(xAccessor(dataset[0]))
+  // Compute the position of each group on the pie:
+  var pie = d3.pie()
+    .value(function(d) {return d.value; })
+    .sort(function(a, b) { console.log(a) ; return d3.ascending(a.key, b.key);} ) // This make sure that group order remains the same in the pie chart
+  var data_ready = pie(d3.entries(data))
 
-    console.log(yAccessor(dataset[0]))
+  // map to data
+  var u = svg.selectAll("path")
+    .data(data_ready)
 
-    let dimensions = {
-        width: window.innerWidth * 0.9,
-        height: 400,
-        margin:{
-            top:15,
-            right:15,
-            bottom:40,
-            left:60,
-        },
-    }
+  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+  u
+    .enter()
+    .append('path')
+    .merge(u)
+    .transition()
+    .duration(1000)
+    .attr('d', d3.arc()
+      .innerRadius(0)
+      .outerRadius(radius)
+    )
+    .attr('fill', function(d){ return(color(d.data.key)) })
+    .attr("stroke", "white")
+    .style("stroke-width", "2px")
+    .style("opacity", 1)
 
-    //compute size or bounds based on the dimensions object
-
-    dimensions.boundedWidth = dimensions.width - dimensions.margin.left;
-    dimensions.boundedHeight= dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
-
-    const wrapper = d3.select("#wrapper").append("svg")
-                .attr("width",dimensions.width)
-                .attr("height", dimensions.height);
-
-    //this is where all my elements are going to be. Inside the bounds of the wrapper
-    const bounds = wrapper.append("g")
-                    .style("transform", `translate(${dimensions.margin.left}px,${dimensions.margin.top}px)`)
-
-
-    //set up your scales
-             
-    //y-scale
-    const yScale = d3.scaleLinear()
-                    .domain(d3.extent(dataset,yAccessor))
-                    .range([dimensions.boundedHeight,0])
-
-    console.log(yScale(9700))
-
-
-    //x-scale
-
-    const xScale = d3.scaleTime()
-    .domain(d3.extent(dataset, xAccessor))
-    .range([0, dimensions.boundedWidth])
-
-    //line generator
-    const lineGenerator = d3.line()
-    .x(d => xScale(xAccessor(d)))
-    .y(d => yScale(yAccessor(d)))
-
-    //draw the line
-    const line = bounds.append("path")
-    .attr("d", lineGenerator(dataset))
-    .attr("fill", "none")
-    .attr("stroke", "#af9358")
-    .attr("stroke-width", 2)
-
-    const yAxisGenerator = d3.axisLeft()
-    .scale(yScale)
-
-  const yAxis = bounds.append("g")
-    .call(yAxisGenerator)
-
-  const xAxisGenerator = d3.axisBottom()
-    .scale(xScale)
-
-  const xAxis = bounds.append("g")
-    .call(xAxisGenerator)
-      .style("transform", `translateY(${
-        dimensions.boundedHeight
-      }px)`)
-
-
+  // remove the group that is not present anymore
+  u
+    .exit()
+    .remove()
 
 }
 
-drawLineChart()
+// Initialize the plot with the first dataset
+update(data1)

@@ -55,19 +55,11 @@ drawBarChart = async () =>{
 
 
   const xScale = d3.scaleBand()
-                 //.domain(d3.extent(dataset,xAccessor))
-                 .domain(["Arm", "Eye", "Head", "Hand","Leg","Other"])
-                // .domain(d3.extent(["Arm", "Eye", "Head", "Hand","Leg","Other"]))
+                  .domain(["Arm", "Eye", "Head", "Hand","Leg","Other"])
                   .range([0,dimensions.boundedWidth])
                   .padding(0.2)
 
 
-  dataset.forEach(ele => {
-   console.log(ele.BodyRegion);
-
-  });              
-
-  console.log(xScale('Leg'))
 
 
   const yScale = d3.scaleLinear()
@@ -78,7 +70,6 @@ drawBarChart = async () =>{
 //   //we are looping through an object so we need to use object entries
 
 
-  console.log(yScale(1000))
 
   //5. draw data
 
@@ -99,9 +90,16 @@ drawBarChart = async () =>{
 
       // height has to be the distance from bar top to chart bottom
       .attr("height", d=> dimensions.boundedHeight- yScale(+d.Total))
-      .attr("fill","teal").on("click",function(d,i){
+      .attr("fill","teal")
+      
+      setTimeout(() =>{
+        
+      })
+      barRect.on("click",function(d,i){
          console.log(d)
          console.log(i)
+         d3.select(this)
+         .attr('fill','yellow')
         
         })
 
