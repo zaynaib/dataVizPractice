@@ -92,15 +92,20 @@ drawBarChart = async () =>{
       .attr("height", d=> dimensions.boundedHeight- yScale(+d.Total))
       .attr("fill","teal")
       
-      setTimeout(() =>{
+     
+      // barRect.on("click",function(d,i){
+      //    console.log(d)
+      //    console.log(i)
+      //    d3.select(this)
+      //    .attr('fill','yellow')
         
-      })
-      barRect.on("click",function(d,i){
-         console.log(d)
-         console.log(i)
-         d3.select(this)
-         .attr('fill','yellow')
-        
+      //   })
+
+      
+      barRect.on("mouseenter", function(datum, index, nodes) {
+        console.log(datum)
+        console.log(index)
+        console.log(nodes)
         })
 
      
