@@ -121,7 +121,8 @@ const xScale = d3.scaleLinear()
               
                 u.enter()
                   .append('circle')
-                  .attr('r', (d) =>d.radius)
+                  //.attr('r', (d) =>d.radius)
+                  .attr('r',25)
                   .merge(u)
                   .attr('cx', function(d) {
                     return d.x
@@ -129,7 +130,7 @@ const xScale = d3.scaleLinear()
                   .attr('cy', function(d) {
                     return d.y +50
                   })
-                  .attr("fill","lightblue")
+                  .attr("fill","url(#jon-snow")
                   
                   
                   .on("mouseover", function(d) {		
