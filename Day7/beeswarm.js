@@ -42,6 +42,19 @@ const nodes = dataset.map(function(d, i) {
   }
 });
 
+var defs = d3.select('svg').append("defs");
+
+defs.append("pattern")
+    .attr("id","jon-snow")
+    .attr("height","100%")
+    .attr("width", "100%")
+    .attr("patternContentUnits", "objectBoundingBox")
+    .append("image")
+    .attr("height",1)
+    .attr("width",1)
+    .attr("preserveAspectRatio","none")
+    .attr("x.ink:href","pikachu.jpg")
+
 /*
 index - the node’s zero-based index into nodes
 x - the node’s current x-position
@@ -116,6 +129,7 @@ const xScale = d3.scaleLinear()
                   .attr('cy', function(d) {
                     return d.y +50
                   })
+                  .attr("fill","lightblue")
                   
                   
                   .on("mouseover", function(d) {		
