@@ -51,6 +51,13 @@ vy - the node’s current y-velocity
 
 */
 
+// Define the div for the tooltip
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0)
+    //review css positioning
+    .style("position","absolute")
+
 console.log(nodes)
 const xScale = d3.scaleLinear()
                  .domain(d3.extent(dataset,xAcessor))
@@ -67,30 +74,74 @@ const xScale = d3.scaleLinear()
                  }))
                  .force('collision', d3.forceCollide().radius(function(d) {
                    return d.radius;
-                 })).on('tick', ticked);
+                 }))
+                .on('tick', ticked);
 
 
 
-                 function ticked() {
-                  var u = d3.select('svg g')
-                    .selectAll('circle')
-                    .data(nodes)
-                    .join('circle')
-                    .attr('r', function(d) {
-                      return d.radius;
-                    })
-                    .style('fill', function(d) {
-                      return "blue";
-                    })
+                //  function ticked() {
+                //   var u = d3.select('svg g')
+                //     .selectAll('circle')
+                //     .data(nodes)
+                //     .join('circle')
+                //     .attr('r', function(d) {
+                //       return d.radius;
+                //     })
+                //     .style('fill', function(d) {
+                //       return "blue";
+                //     })
 
-                    .attr('cx', function(d) {
-                      return d.x;
-                    })
-                    .attr('cy', function(d) {
-                      return d.y + 50;
-                    })
+                //     .attr('cx', function(d) {
+                //       return d.x;
+                //     })
+                //     .attr('cy', function(d) {
+                //       return d.y + 50;
+                //     })
                 
-                }
+               // }
+
+
+               function ticked() {
+                var u = d3.select('svg')
+                  .selectAll('circle')
+                  .data(nodes)
+              
+                u.enter()
+                  .append('circle')
+                  .attr('r', (d) =>d.radius)
+                  .merge(u)
+                  .attr('cx', function(d) {
+                    return d.x
+                  })
+                  .attr('cy', function(d) {
+                    return d.y +50
+                  })
+                  
+                  
+                  .on("mouseover", function(d) {		
+                    div.transition()		
+                        .duration(200)		
+                        .style("opacity", .9)
+                    div.html(d.name)		
+                        .style("left", d3.select(this).attr("cx") + "px")		
+                        .style("top", d3.select(this).attr("cy") + "px");	
+                       // console.log(d3.event.pageX)
+                    })	
+                  .on("mousemove", function(){return div.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+                .on("mouseout", function(d) {		
+                    div.transition()		
+                        .duration(500)		
+                        .style("opacity", 0);	
+                });
+        
+              
+                u.exit().remove()
+              }
+
+        
+             d3.select('svg')
+              .selectAll('circle')
+              .on('click', (d) => console.log("you clicked me"))
 
      
 }
