@@ -92,21 +92,71 @@ drawBarChart = async () =>{
       .attr("height", d=> dimensions.boundedHeight- yScale(+d.Total))
       .attr("fill","teal")
       
-     
-      // barRect.on("click",function(d,i){
-      //    console.log(d)
-      //    console.log(i)
-      //    d3.select(this)
-      //    .attr('fill','yellow')
-        
-      //   })
-
+      const xAxisGenerator = d3.axisBottom()
+                            .scale(xScale);
       
-      barRect.on("mouseenter", function(datum, index, nodes) {
-        console.log(datum)
-        console.log(index)
-        console.log(nodes)
+    const xAxis = wrapper.append("g")
+    .call(xAxisGenerator)
+      .style("transform", `translateY(${dimensions.boundedHeight}px)`)
+
+      barRect.on("click",function(d,i){
+         console.log(d)
+         console.log(i)
+         d3.select(this)
+         .attr('fill','yellow')
+        
         })
+
+        // barRect.on("mouseenter", function(event, d) {
+        //   const e = barRect.nodes();
+        //   const i = e.indexOf(this);
+        //   console.log(d, i, e);
+        // })
+
+        //selection.nodes - returns an array of all selected elements.
+         
+      barRect.on("click",function(e,d){
+        console.log("you clicked",d)
+        d3.select(this).attr('fill','yellow')
+       
+       })
+
+
+
+        barRect.on("mouseenter",function(e,d){
+          const i = barRect.nodes().indexOf(this)
+          console.log(e)
+          console.log(d)
+          console.log(i)
+          d3.select(this).attr('fill','yellow')
+
+        })
+
+        barRect.on('mouseover', function(e,i) {
+          //d3.select('#tooltip').style('opacity', 1).text(i.BodyRegion)'
+          //console.log(e)
+          d3.select('#tooltip').transition().duration(200).style('opacity', 1).text(i.BodyRegion)
+
+        })
+        .on('mouseout', function(e,i) {
+          d3.select('#tooltip').style('opacity', 0)
+          d3.select(this).attr('fill','teal')
+
+
+        })
+        .on('mousemove', function(e,i) {
+         // console.log(e.pageX +10)
+          d3.select('#tooltip')
+        .style('left', e.pageX+10 + 'px')
+          .style('top', e.pageY+10 + 'px')
+        })
+ 
+      
+      // barRect.on("mouseenter", function(datum, index, nodes) {
+      //   console.log(datum)
+      //   console.log(index)
+      //   console.log(nodes)
+      //   })
 
      
       
