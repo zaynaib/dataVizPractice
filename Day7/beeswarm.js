@@ -55,7 +55,7 @@ beeswarm = async () =>{
       .data(dataset)
       .join("pattern")
       .attr("class","artist-pattern")
-      .attr("id","jon-snow")
+      .attr("id",d => d.id)
       .attr("height","100%")
       .attr("width","100%")
       .attr("patternContentUnits","objectBoundingBox")
