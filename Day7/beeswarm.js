@@ -1,6 +1,6 @@
 beeswarm = async () =>{
     //Access data
-  const dataset = await d3.csv('./hiphop.csv');
+  const dataset = await d3.csv('./hiphop3.csv');
 
   console.log(dataset)
 
@@ -41,17 +41,7 @@ beeswarm = async () =>{
 //       .attr("xlink:href","assets/images/2pac.jpg")
 
 
-  // draw a circle for each datapoint
-  let c =wrapper.selectAll("cirlce")
-          .data(dataset)
-          .join("circle")
-          .attr("r",5)
-          //.attr("fill","lightblue")
-          .attr("fill","url(#jon-snow")
-
-
- // console.log(c)
- defs.selectAll(".artist-pattern")
+   defs.selectAll(".artist-pattern")
       .data(dataset)
       .join("pattern")
       .attr("class","artist-pattern")
@@ -64,7 +54,25 @@ beeswarm = async () =>{
       .attr("width",1)
       .attr("preserveAspectRatio","none")
       .attr("xmlns:xlink","http://www.w3.org/1999/xlink")
-      .attr("xlink:href","assets/images/2pac.jpg")
+      //.attr("xlink:href","assets/images/2pac.jpg")
+      .attr("xlink:href",d => d.images)
+
+      console.log(defs)
+
+  // draw a circle for each datapoint
+  let c =wrapper.selectAll("cirlce")
+          .data(dataset)
+          .join("circle")
+          .attr("r",25)
+          .attr("fill", function(d){
+            return "url(#" + d.id + ")"
+          })
+          //.attr("fill","lightblue")
+          //.attr("fill",`url(#jon-snow)`)
+
+
+ // console.log(c)
+
 
 
 
