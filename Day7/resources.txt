@@ -1,1 +1,4 @@
 https://medium.com/analytics-vidhya/how-and-why-to-add-a-chart-to-your-d3-js-tooltip-6aca4ecfd79d
+https://www.programiz.com/python-programming/time/sleep
+
+https://dzone.com/articles/perform-actions-using-javascript-in-python-seleniu

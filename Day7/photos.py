@@ -18,3 +18,7 @@
 
 #pip install selenuim
 #download web driver
+
+#https://stackoverflow.com/questions/60824679/time-sleep-on-chromedriver
+
+https://towardsdatascience.com/image-scraping-with-python-a96feda8af2d ***
