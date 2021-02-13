@@ -1,4 +1,11 @@
 https://medium.com/analytics-vidhya/how-and-why-to-add-a-chart-to-your-d3-js-tooltip-6aca4ecfd79d
 https://www.programiz.com/python-programming/time/sleep
 
-https://dzone.com/articles/perform-actions-using-javascript-in-python-seleniu
+https://dzone.com/articles/perform-actions-using-javascript-in-python-selenium
+
+https://stackoverflow.com/questions/43858900/python-selenium-webdriverelement-object-has-no-attribute-get-attribute
+
+
+https://stackoverflow.com/questions/60824679/time-sleep-on-chromedriver
+
+https://towardsdatascience.com/image-scraping-with-python-a96feda8af2d ***
