@@ -9,3 +9,11 @@ https://stackoverflow.com/questions/43858900/python-selenium-webdriverelement-ob
 https://stackoverflow.com/questions/60824679/time-sleep-on-chromedriver
 
 https://towardsdatascience.com/image-scraping-with-python-a96feda8af2d ***
+
+https://www.journaldev.com/19178/python-io-bytesio-stringio
+
+https://docs.python.org/3/library/hashlib.html
+
+https://pillow.readthedocs.io/en/stable/handbook/tutorial.html
+
+https://pillow.readthedocs.io/en/stable/handbook/tutorial.html
