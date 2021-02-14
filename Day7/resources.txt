@@ -17,3 +17,7 @@ https://docs.python.org/3/library/hashlib.html
 https://pillow.readthedocs.io/en/stable/handbook/tutorial.html
 
 https://pillow.readthedocs.io/en/stable/handbook/tutorial.html
+
+https://stackoverflow.com/questions/23086383/how-to-test-nonetype-in-python ***
+
+https://stackoverflow.com/questions/19202633/python-3-type-hinting-for-none *** 
