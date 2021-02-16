@@ -9,7 +9,7 @@ beeswarm = async () =>{
   console.log(xAccessor(dataset[0]));
 
   const dimensions = {
-    width:500,
+    width:1500,
     height:500
   }
 
@@ -64,9 +64,9 @@ console.log("hello world")
   let c =wrapper.selectAll("cirlce")
           .data(dataset)
           .join("circle")
-          .attr("r",5)
+          .attr("r",15)
           .attr("fill", function(d){
-            console.log(d.id)
+            //console.log(d.id)
             return "url(#" + d.id + ")"
           })
           //.attr("fill","lightblue")
@@ -84,7 +84,7 @@ console.log("hello world")
       .force('charge',d3.forceManyBody().strength(3)) //attach the forces to the simulation, charge
       .force("x", d3.forceX().x(d=> xScale(+d.words)).strength(0.05)) 
       .force("y", d3.forceY(dimensions.height/2).strength(0.05))
-      .force("collide", d3.forceCollide(5))
+      .force("collide", d3.forceCollide(20)) //how close the circles are to one another
 
 
   simulation.nodes(dataset) //send the nodes array to simulation so it knows what to calculate with
