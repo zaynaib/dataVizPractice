@@ -1,6 +1,6 @@
 beeswarm = async () =>{
     //Access data
-  const dataset = await d3.csv('./hiphop3.csv');
+  const dataset = await d3.csv('./hiphop2.csv');
 
   console.log(dataset)
 
@@ -40,6 +40,7 @@ beeswarm = async () =>{
 //       .attr("xmlns:xlink","http://www.w3.org/1999/xlink")
 //       .attr("xlink:href","assets/images/2pac.jpg")
 
+console.log("hello world")
 
    defs.selectAll(".artist-pattern")
       .data(dataset)
@@ -63,8 +64,9 @@ beeswarm = async () =>{
   let c =wrapper.selectAll("cirlce")
           .data(dataset)
           .join("circle")
-          .attr("r",25)
+          .attr("r",5)
           .attr("fill", function(d){
+            console.log(d.id)
             return "url(#" + d.id + ")"
           })
           //.attr("fill","lightblue")
