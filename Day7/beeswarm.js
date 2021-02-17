@@ -2,11 +2,11 @@ beeswarm = async () =>{
     //Access data
   const dataset = await d3.csv('./hiphop2.csv');
 
-  console.log(dataset)
+//  console.log(dataset)
 
   const xAccessor = d => +d.words;
 
-  console.log(xAccessor(dataset[0]));
+  //console.log(xAccessor(dataset[0]));
 
   const dimensions = {
     width:1500,
@@ -19,11 +19,17 @@ beeswarm = async () =>{
   .range([0,dimensions.width])
   .nice();
 
-  console.log(xScale(500))
+ // console.log(xScale(500))
   const wrapper = d3.select("#wrapper").append("svg")
                     .attr("width",dimensions.width)
                     .attr("height",dimensions.height)
   
+// Define the div for the tooltip
+var div = d3.select("body").append("div")	
+.attr("class", "tooltip")				
+.style("opacity", 0)
+//review css positioning
+.style("position","absolute")
   
    //after circles are created lets create defs
  var defs = d3.select('svg').append("defs");
@@ -40,7 +46,6 @@ beeswarm = async () =>{
 //       .attr("xmlns:xlink","http://www.w3.org/1999/xlink")
 //       .attr("xlink:href","assets/images/2pac.jpg")
 
-console.log("hello world")
 
    defs.selectAll(".artist-pattern")
       .data(dataset)
@@ -61,7 +66,7 @@ console.log("hello world")
       console.log(defs)
 
   // draw a circle for each datapoint
-  let c =wrapper.selectAll("cirlce")
+  let c = wrapper.selectAll("cirlce")
           .data(dataset)
           .join("circle")
           .attr("r",15)
@@ -84,7 +89,7 @@ console.log("hello world")
       .force('charge',d3.forceManyBody().strength(3)) //attach the forces to the simulation, charge
       .force("x", d3.forceX().x(d=> xScale(+d.words)).strength(0.05)) 
       .force("y", d3.forceY(dimensions.height/2).strength(0.05))
-      .force("collide", d3.forceCollide(20)) //how close the circles are to one another
+      .force("collide", d3.forceCollide(25)) //how close the circles are to one another
 
 
   simulation.nodes(dataset) //send the nodes array to simulation so it knows what to calculate with
@@ -93,10 +98,33 @@ console.log("hello world")
 //each time the simulation ticks, update their position based on the newly
 //calculated position by the simulation
   function ticked(){
+    try{
       c
       .attr("cx",d => d.x)
       .attr("cy", d => d.y +50)
+
+
+    
+
+      .on("mouseover", function(d) {		
+        div.transition()		
+            .duration(200)		
+            .style("opacity", .9)
+            .style("background-color","teal")
+        div.html(d.rapper)		
+            .style("left", d3.select(this).attr("cx") + "px")		
+            .style("top", d3.select(this).attr("cy") + "px");	
+        })	
+
+        console.log('working')
+
+      }
+      catch(err){
+        console.log(`this is your ${err}`)
+      }
   }
+
+  
   // let circles = wrapper.selectAll("circle")
   //                   .data(dataset)
   //                   .join(
