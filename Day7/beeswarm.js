@@ -34,19 +34,6 @@ var div = d3.select("body").append("div")
    //after circles are created lets create defs
  var defs = d3.select('svg').append("defs");
 
-//  defs.append("pattern")
-//       .attr("id","jon-snow")
-//       .attr("height","100%")
-//       .attr("width","100%")
-//       .attr("patternContentUnits","objectBoundingBox")
-//       .append("image")
-//       .attr("height",1)
-//       .attr("width",1)
-//       .attr("preserveAspectRatio","none")
-//       .attr("xmlns:xlink","http://www.w3.org/1999/xlink")
-//       .attr("xlink:href","assets/images/2pac.jpg")
-
-
    defs.selectAll(".artist-pattern")
       .data(dataset)
       .join("pattern")
@@ -60,10 +47,8 @@ var div = d3.select("body").append("div")
       .attr("width",1)
       .attr("preserveAspectRatio","none")
       .attr("xmlns:xlink","http://www.w3.org/1999/xlink")
-      //.attr("xlink:href","assets/images/2pac.jpg")
       .attr("xlink:href",d => d.images)
 
-      console.log(defs)
 
   // draw a circle for each datapoint
   let c = wrapper.selectAll("cirlce")
@@ -74,16 +59,7 @@ var div = d3.select("body").append("div")
             //console.log(d.id)
             return "url(#" + d.id + ")"
           })
-          //.attr("fill","lightblue")
-          //.attr("fill",`url(#jon-snow)`)
-
-
- // console.log(c)
-
-
-
-
-
+      
 
   let simulation = d3.forceSimulation() //create a simulation
       .force('charge',d3.forceManyBody().strength(3)) //attach the forces to the simulation, charge
@@ -123,17 +99,6 @@ var div = d3.select("body").append("div")
         console.log(`this is your ${err}`)
       }
   }
-
-  
-  // let circles = wrapper.selectAll("circle")
-  //                   .data(dataset)
-  //                   .join(
-  //                     enter => enter.append("cirlce")
-  //                     .attr("r",10)
-
-                      
-  //                   )
-            
 
      
 }
