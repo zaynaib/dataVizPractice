@@ -1,10 +1,15 @@
 beeswarm = async () =>{
     //Access data
   const dataset = await d3.csv('./hiphop2.csv');
+
+//  console.log(dataset)
+
   const xAccessor = d => +d.words;
 
+  //console.log(xAccessor(dataset[0]));
+
   const dimensions = {
-    width:2000,
+    width:1500,
     height:500
   }
 
@@ -14,12 +19,6 @@ beeswarm = async () =>{
   .range([0,dimensions.width])
   .nice();
 
-  console.log(dataset[91].rapper)
-  console.log(+dataset[91].words)
-
-  console.log(xScale(dataset[91].words))
-
-  
  // console.log(xScale(500))
   const wrapper = d3.select("#wrapper").append("svg")
                     .attr("width",dimensions.width)
@@ -34,6 +33,18 @@ var div = d3.select("body").append("div")
   
    //after circles are created lets create defs
  var defs = d3.select('svg').append("defs");
+
+//  defs.append("pattern")
+//       .attr("id","jon-snow")
+//       .attr("height","100%")
+//       .attr("width","100%")
+//       .attr("patternContentUnits","objectBoundingBox")
+//       .append("image")
+//       .attr("height",1)
+//       .attr("width",1)
+//       .attr("preserveAspectRatio","none")
+//       .attr("xmlns:xlink","http://www.w3.org/1999/xlink")
+//       .attr("xlink:href","assets/images/2pac.jpg")
 
 
    defs.selectAll(".artist-pattern")
@@ -52,6 +63,7 @@ var div = d3.select("body").append("div")
       //.attr("xlink:href","assets/images/2pac.jpg")
       .attr("xlink:href",d => d.images)
 
+      console.log(defs)
 
   // draw a circle for each datapoint
   let c = wrapper.selectAll("cirlce")
@@ -60,16 +72,24 @@ var div = d3.select("body").append("div")
           .attr("r",15)
           .attr("fill", function(d){
             //console.log(d.id)
-            return "url(#" + d.id + ")";
-          });
+            return "url(#" + d.id + ")"
+          })
           //.attr("fill","lightblue")
+          //.attr("fill",`url(#jon-snow)`)
+
+
+ // console.log(c)
+
+
+
+
 
 
   let simulation = d3.forceSimulation() //create a simulation
       .force('charge',d3.forceManyBody().strength(3)) //attach the forces to the simulation, charge
       .force("x", d3.forceX().x(d=> xScale(+d.words)).strength(0.05)) 
       .force("y", d3.forceY(dimensions.height/2).strength(0.05))
-      .force("collide", d3.forceCollide(20)) //how close the circles are to one another
+      .force("collide", d3.forceCollide(25)) //how close the circles are to one another
 
 
   simulation.nodes(dataset) //send the nodes array to simulation so it knows what to calculate with
@@ -79,7 +99,7 @@ var div = d3.select("body").append("div")
 //calculated position by the simulation
   function ticked(){
     try{
-      d3.selectAll("circle")
+      c
       .attr("cx",d => d.x)
       .attr("cy", d => d.y +50)
 
@@ -96,6 +116,7 @@ var div = d3.select("body").append("div")
             .style("top", d3.select(this).attr("cy") + "px");	
         })	
 
+        console.log('working')
 
       }
       catch(err){
@@ -103,31 +124,7 @@ var div = d3.select("body").append("div")
       }
   }
 
-
-  // function ticked(){
-    
-  //     c
-  //     .attr("cx",d => d.x)
-  //     .attr("cy", d => d.y +50)
-
-
-    
-
-  //     .on("mouseover", function(d) {		
-  //       div.transition()		
-  //           .duration(200)		
-  //           .style("opacity", .9)
-  //           .style("background-color","teal")
-  //       div.html(d.rapper)		
-  //           .style("left", d3.select(this).attr("cx") + "px")		
-  //           .style("top", d3.select(this).attr("cy") + "px");	
-  //       })	
-
-      
-   
-  }
   
-  //Error: <circle> attribute cy: Expected length, "NaN".
   // let circles = wrapper.selectAll("circle")
   //                   .data(dataset)
   //                   .join(
@@ -139,7 +136,6 @@ var div = d3.select("body").append("div")
             
 
      
-
-//}
+}
 
 beeswarm();
