@@ -10,7 +10,7 @@ beeswarm = async () =>{
 
   const dimensions = {
     width:1500,
-    height:500
+    height:800
   }
 
 
